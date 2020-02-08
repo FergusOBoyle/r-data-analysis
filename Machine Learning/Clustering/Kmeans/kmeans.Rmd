@@ -3,18 +3,53 @@ title: "K-means"
 output: github_document
 ---
 
-
-Test commit
-
 ```{r}
-plot(cars)
+knitr::opts_chunk$set(fig.width=15, fig.height=8)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+I am going to work with the Iris dataset to demonstate K-means
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+```{r}
+data(iris)
+
+str(iris)
+```
+
+
+```{r}
+head(iris)
+```
+
+Let's remove the fifth column as it contains the species. We want to frame this exercise as unspuervised learning problem so removing the labels faciliates that. Ideally we will be able to identify a number of groups that correspond to the various species types.
+
+```{r}
+iris_raw <- iris[,-5]
+```
+
+The pairs R function returns a plot matrix, consisting of scatterplots for each variable-combination of a data frame. The basic R syntax for the pairs command is shown above.
+
+```{r fig.width = 12}
+pairs(iris_raw, pch=19, col = adjustcolor(1, 0.4))
+
+```
+
+From the pairing plot above we can see that there are definetely distinct groups. But I can't really guess how many discinct groups in total there might be in the 5 dimensional space.
+
+
 ```{r}
 
 ```
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
