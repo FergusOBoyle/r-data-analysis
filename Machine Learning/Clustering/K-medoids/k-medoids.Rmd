@@ -31,7 +31,7 @@ str(iris)
 ```
 
 ```{r}
-fitted <- pam(X, k = 3, metric = "manhattan")
+fitted <- pam(iris, k = 3, metric = "manhattan")
 
 
 
