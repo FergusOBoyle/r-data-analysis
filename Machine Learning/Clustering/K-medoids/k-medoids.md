@@ -61,4 +61,25 @@ str(iris)
 
 ``` r
 fitted <- pam(iris, k = 3, metric = "manhattan")
+
+fitted
 ```
+
+    ## Medoids:
+    ##       ID Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+    ## [1,]   8          5.0         3.4          1.5         0.2       1
+    ## [2,]  56          5.7         2.8          4.5         1.3       2
+    ## [3,] 117          6.5         3.0          5.5         1.8       3
+    ## Clustering vector:
+    ##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+    ##  [36] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+    ##  [71] 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3
+    ## [106] 3 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+    ## [141] 3 3 3 3 3 3 3 3 3 3
+    ## Objective function:
+    ## build  swap 
+    ## 1.166 1.138 
+    ## 
+    ## Available components:
+    ##  [1] "medoids"    "id.med"     "clustering" "objective"  "isolation" 
+    ##  [6] "clusinfo"   "silinfo"    "diss"       "call"       "data"

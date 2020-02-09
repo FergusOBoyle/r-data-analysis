@@ -87,15 +87,9 @@ pairs(iris_raw, pch = symb[fitted_kmeans$cluster], col = adjustcolor(col[fitted_
 
 
 ```
-```{r}
-ggplot(iris_raw) +
-geom_point(aes(x = Sepal.Length, y= Sepal.Width, color=Petal.Length))
+`
 
 
-```
 
-```{r}
-
-```
 
 
