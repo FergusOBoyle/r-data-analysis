@@ -1,18 +1,41 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "K-medoids"
+output: github_document
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+An alternative to k-means is the k-medoids or partitioning around medoids (PAM) algorithm.
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+According to [wikipeadia](https://en.wikipedia.org/wiki/K-medoids): 
+
+> Both the k-means and k-medoids algorithms are partitional (breaking the dataset up into groups) and both attempt to minimize the distance between points labeled to be in a cluster and a point designated as the center of that cluster. In contrast to the k-means algorithm, k-medoids chooses data points as centers (medoids or exemplars) and can be used with arbitrary distances, while in k-means the centre of a cluster is not necessarily one of the input data points (it is the average between the points in the cluster).
+
+K-means attempts to minimize the total squared error, while k-medoids minimizes the sum of dissimilarities between points labeled to be in a cluster and a point designated as the center of that cluster.
+
+The k-methods method is more robust to noise and outliers. The medoid used is comparable to a median rather than a mean. Median is considered more robust to outliers than using the mean.
+
+Disadvantage: PAM can take much longer to run than k-means. As it involves computing all pairwise distances, it is O(n^2*k*i); whereas k-means runs in O(n*k*i) 
+
 
 ```{r}
-plot(cars)
+library(tidyverse)
+library(cluster)
+
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+data(iris)
+
+str(iris)
+```
+
+```{r}
+fitted <- pam(X, k = 3, metric = "manhattan")
+
+
+
+```
+
+
+
