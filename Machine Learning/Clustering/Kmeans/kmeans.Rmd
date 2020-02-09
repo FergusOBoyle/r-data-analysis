@@ -4,7 +4,8 @@ output: github_document
 ---
 
 ```{r}
-knitr::opts_chunk$set(fig.width=15, fig.height=8)
+library(tidyverse)
+
 ```
 
 I am going to work with the Iris dataset to demonstate K-means
@@ -35,21 +36,66 @@ pairs(iris_raw, pch=19, col = adjustcolor(1, 0.4))
 
 From the pairing plot above we can see that there are definetely distinct groups. But I can't really guess how many discinct groups in total there might be in the 5 dimensional space.
 
+Now run k-means with k=3. The parameter, nstart ensures that a best fit from multiple runs is picked, therefore avoinding local minima.
 
 ```{r}
+fitted_kmeans <- kmeans(iris_raw, centers = 3, nstart = 20)
 
 ```
 
 
 
 ```{r}
+fitted_kmeans
+```
 
+To start to understand if the clusters correlate with the removed flower label names let take a closer look at both. First, the original labels:
+
+
+```{r}
+iris$Species
+```
+Note that the species column is a factor with labels 1, 2 and 3 
+
+```{r}
+fitted_kmeans$cluster
+```
+
+
+
+
+```{r}
+symb <- c(15, 16, 17)
+
+iris$Species
+
+symb[iris$Species]
 ```
 
 
 ```{r}
+par( mfrow = c(1,2) ) # split the plot window in 2 screens
+symb <- c(15, 16, 17)
+col <- c("orange", "blue", "red")
+
+
+
+pairs(iris_raw, pch = symb[iris$Species], col = adjustcolor(col[iris$Species], 0.4), main = "Species according to Oringinal Labels")
+
+
+pairs(iris_raw, pch = symb[fitted_kmeans$cluster], col = adjustcolor(col[fitted_kmeans$cluster], 0.4), main = "Clustering result - K = 3")
+
+
+```
+```{r}
+ggplot(iris_raw) +
+geom_point(aes(x = Sepal.Length, y= Sepal.Width, color=Petal.Length))
+
 
 ```
 
+```{r}
+
+```
 
 
