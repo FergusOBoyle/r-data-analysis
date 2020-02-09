@@ -1,0 +1,160 @@
+---
+title: "Association Rule Learning"
+output: github_document
+---
+
+
+```{r results="hide", include=FALSE}
+library(tidyverse)
+library(cluster)
+
+#Package for association rule mining
+library(arules)
+
+```
+
+For transactional data we are going to work with the groceries dataset
+
+
+```{r}
+data(Groceries)
+head(Groceries)
+```
+
+The dataset is stored in whats known as a transactions matrix.
+
+```{r}
+class(Groceries)
+```
+
+We can have a quick look using inspect
+```{r}
+inspect(Groceries[1:5])
+```
+
+
+### Apriori Algorithm
+
+How do we choose values of support and confidence to best faciliate finding the most interesting rules. Check out the following paper: [Mining the Most Interesting Rules](http://rakesh.agrawal-family.com/papers/kdd99rules.pdf)
+
+Another interesting idea from Boxun Zhang on Quora:
+
+> However, if you transform the output of Apriori algorithm (association rules) into features for a supervised machine learning algorithm, you can examine the effect of having different support and confidences values (while having other features fixed) on the performance of that supervised model (ROC, RMSE, and etc.). Then, the best values for support and confidence are the values that maximize, or minimize, the performance metric.
+
+However, it is likely that the best way of choosing support and confidence is through trial and error and domain knowledge. 
+
+
+```{r}
+rules <- apriori(Groceries,
+parameter = list(support = 0.01, confidence = 0.5, maxlen = 5))
+
+```
+
+The 
+
+```{r}
+class(rules)
+
+inspect(rules[1:5])
+```
+
+```{r}
+summary(rules)
+```
+
+
+```{r}
+rules_sorted <- sort(rules, by = "support") # sort by support
+inspect(rules_sorted[1:5]) 
+```
+
+The quality function contains same info as rules, just without the rules columns.
+
+```{r}
+qual <- quality(rules) # extract quality measures
+
+qual
+```
+
+
+```{r}
+
+
+# compute p(A) and p(B)
+pA <- qual$support/qual$confidence
+pB <- qual$confidence/qual$lift
+# compute lift upper and lower bounds
+U <- apply(cbind(1/pA, 1/pB), 1, min)
+L <- apply(cbind(1/pA + 1/pB - 1/(pA*pB), 0.01/(pA*pB), 0.5/pB, 0), 1, max)
+
+sLift <- (qual$lift - L)/(U - L) # standardized lift
+data.frame(rule = labels(rules), sLift) # print rules and sLift
+```
+
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+
