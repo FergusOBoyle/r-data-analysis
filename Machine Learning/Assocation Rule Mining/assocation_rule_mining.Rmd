@@ -32,8 +32,10 @@ We can have a quick look using inspect
 inspect(Groceries[1:5])
 ```
 
+A great intuitive explaination of Support, Confidence and Lift can be found [here](https://www.hackerearth.com/blog/developers/beginners-tutorial-apriori-algorithm-data-mining-r-implementation).
 
-### Apriori Algorithm
+$$\frac{4}{4}$$
+
 
 How do we choose values of support and confidence to best faciliate finding the most interesting rules. Check out the following paper: [Mining the Most Interesting Rules](http://rakesh.agrawal-family.com/papers/kdd99rules.pdf)
 
@@ -41,8 +43,9 @@ Another interesting idea from Boxun Zhang on Quora:
 
 > However, if you transform the output of Apriori algorithm (association rules) into features for a supervised machine learning algorithm, you can examine the effect of having different support and confidences values (while having other features fixed) on the performance of that supervised model (ROC, RMSE, and etc.). Then, the best values for support and confidence are the values that maximize, or minimize, the performance metric.
 
-However, it is likely that the best way of choosing support and confidence is through trial and error and domain knowledge. 
+However, it is likely that the best way of choosing support and confidence is through trial and error and domain knowledge.The aim is to find a good balance between number of rules and interpretability.
 
+### Apriori Algorithm
 
 ```{r}
 rules <- apriori(Groceries,

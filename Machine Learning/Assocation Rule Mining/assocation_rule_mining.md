@@ -46,7 +46,11 @@ inspect(Groceries[1:5])
     ##      condensed milk,          
     ##      long life bakery product}
 
-### Apriori Algorithm
+A great intuitive explaination of Support, Confidence and Lift can be
+found
+[here](https://www.hackerearth.com/blog/developers/beginners-tutorial-apriori-algorithm-data-mining-r-implementation).
+
+\[\frac{4}{4}\]
 
 How do we choose values of support and confidence to best faciliate
 finding the most interesting rules. Check out the following paper:
@@ -64,7 +68,10 @@ Another interesting idea from Boxun Zhang on Quora:
 > performance metric.
 
 However, it is likely that the best way of choosing support and
-confidence is through trial and error and domain knowledge.
+confidence is through trial and error and domain knowledge.The aim is to
+find a good balance between number of rules and interpretability.
+
+### Apriori Algorithm
 
 ``` r
 rules <- apriori(Groceries,
@@ -89,7 +96,7 @@ parameter = list(support = 0.01, confidence = 0.5, maxlen = 5))
     ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
     ## sorting and recoding items ... [88 item(s)] done [0.00s].
     ## creating transaction tree ... done [0.00s].
-    ## checking subsets of size 1 2 3 4 done [0.00s].
+    ## checking subsets of size 1 2 3 4 done [0.01s].
     ## writing ... [15 rule(s)] done [0.00s].
     ## creating S4 object  ... done [0.00s].
 
