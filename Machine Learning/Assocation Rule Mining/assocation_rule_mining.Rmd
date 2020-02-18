@@ -36,10 +36,25 @@ inspect(Groceries[1:5])
 
 A great intuitive explaination of Support, Confidence and Lift can be found [here](https://www.hackerearth.com/blog/developers/beginners-tutorial-apriori-algorithm-data-mining-r-implementation).
 
-efverf
+Support is the probability that a randomly chosen transaction contains both item set A and B:
 
-$\sqrt{4}=2$
 
+
+$$\frac{n(A,B)}{N}$$
+
+It can be interpreted as $Pr(A,B)$
+
+Confidence is the probability that itemset B is purchased given that itemset A has been purchased.
+
+$$\frac{n(A,B)}{n(A)}$$
+
+It can be interpreted as the conditional probability, $Pr(B|A)$. However it only takes into account the popularity of item A and not B. To overcome this we have Lift.
+
+Lift is defined as:
+
+$$\frac{Pr(A,B)}{Pr(A)Pr(B)} $$
+
+If A and B are independent then the numerator will equal the denominator. Therefore, values greater than 1 indicate an association.
 
 How do we choose values of support and confidence to best faciliate finding the most interesting rules. Check out the following paper: [Mining the Most Interesting Rules](http://rakesh.agrawal-family.com/papers/kdd99rules.pdf)
 

@@ -50,10 +50,37 @@ A great intuitive explaination of Support, Confidence and Lift can be
 found
 [here](https://www.hackerearth.com/blog/developers/beginners-tutorial-apriori-algorithm-data-mining-r-implementation).
 
-efverf
+Support is the probability that a randomly chosen transaction contains
+both item set A and B:
 
-![\\sqrt{4}=2](https://latex.codecogs.com/png.latex?%5Csqrt%7B4%7D%3D2
-"\\sqrt{4}=2")
+  
+![\\frac{n(A,B)}{N}](https://latex.codecogs.com/png.latex?%5Cfrac%7Bn%28A%2CB%29%7D%7BN%7D
+"\\frac{n(A,B)}{N}")  
+
+It can be interpreted as
+![Pr(A,B)](https://latex.codecogs.com/png.latex?Pr%28A%2CB%29 "Pr(A,B)")
+
+Confidence is the probability that itemset B is purchased given that
+itemset A has been purchased.
+
+  
+![\\frac{n(A,B)}{n(A)}](https://latex.codecogs.com/png.latex?%5Cfrac%7Bn%28A%2CB%29%7D%7Bn%28A%29%7D
+"\\frac{n(A,B)}{n(A)}")  
+
+It can be interpreted as the conditional probability,
+![Pr(B|A)](https://latex.codecogs.com/png.latex?Pr%28B%7CA%29
+"Pr(B|A)"). However it only takes into account the popularity of item A
+and not B. To overcome this we have Lift.
+
+Lift is defined as:
+
+  
+![\\frac{Pr(A,B)}{Pr(A)Pr(B)}
+](https://latex.codecogs.com/png.latex?%5Cfrac%7BPr%28A%2CB%29%7D%7BPr%28A%29Pr%28B%29%7D%20
+"\\frac{Pr(A,B)}{Pr(A)Pr(B)} ")  
+
+If A and B are independent then the numerator will equal the
+denominator. Therefore, values greater than 1 indicate an association.
 
 How do we choose values of support and confidence to best faciliate
 finding the most interesting rules. Check out the following paper:
@@ -96,7 +123,7 @@ parameter = list(support = 0.01, confidence = 0.5, maxlen = 5))
     ## Absolute minimum support count: 98 
     ## 
     ## set item appearances ...[0 item(s)] done [0.00s].
-    ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
+    ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
     ## sorting and recoding items ... [88 item(s)] done [0.00s].
     ## creating transaction tree ... done [0.01s].
     ## checking subsets of size 1 2 3 4 done [0.00s].
