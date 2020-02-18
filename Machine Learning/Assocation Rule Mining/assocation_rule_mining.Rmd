@@ -1,6 +1,8 @@
 ---
 title: "Association Rule Learning"
-output: github_document
+output: 
+  github_document:
+    pandoc_args: --webtex
 ---
 
 
@@ -34,7 +36,9 @@ inspect(Groceries[1:5])
 
 A great intuitive explaination of Support, Confidence and Lift can be found [here](https://www.hackerearth.com/blog/developers/beginners-tutorial-apriori-algorithm-data-mining-r-implementation).
 
-$$\frac{4}{4}$$
+efverf
+
+$\sqrt{4}=2$
 
 
 How do we choose values of support and confidence to best faciliate finding the most interesting rules. Check out the following paper: [Mining the Most Interesting Rules](http://rakesh.agrawal-family.com/papers/kdd99rules.pdf)

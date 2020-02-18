@@ -50,7 +50,10 @@ A great intuitive explaination of Support, Confidence and Lift can be
 found
 [here](https://www.hackerearth.com/blog/developers/beginners-tutorial-apriori-algorithm-data-mining-r-implementation).
 
-\[\frac{4}{4}\]
+efverf
+
+![\\sqrt{4}=2](https://latex.codecogs.com/png.latex?%5Csqrt%7B4%7D%3D2
+"\\sqrt{4}=2")
 
 How do we choose values of support and confidence to best faciliate
 finding the most interesting rules. Check out the following paper:
@@ -93,10 +96,10 @@ parameter = list(support = 0.01, confidence = 0.5, maxlen = 5))
     ## Absolute minimum support count: 98 
     ## 
     ## set item appearances ...[0 item(s)] done [0.00s].
-    ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
+    ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
     ## sorting and recoding items ... [88 item(s)] done [0.00s].
-    ## creating transaction tree ... done [0.00s].
-    ## checking subsets of size 1 2 3 4 done [0.01s].
+    ## creating transaction tree ... done [0.01s].
+    ## checking subsets of size 1 2 3 4 done [0.00s].
     ## writing ... [15 rule(s)] done [0.00s].
     ## creating S4 object  ... done [0.00s].
 
