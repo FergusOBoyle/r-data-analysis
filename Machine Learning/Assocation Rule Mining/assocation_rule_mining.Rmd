@@ -72,7 +72,6 @@ parameter = list(support = 0.01, confidence = 0.5, maxlen = 5))
 
 ```
 
-The 
 
 ```{r}
 class(rules)
@@ -97,6 +96,17 @@ qual <- quality(rules) # extract quality measures
 
 qual
 ```
+
+### Standardised Lift
+
+As discussed above Lift is defined as:
+
+$$\frac{Pr(A,B)}{Pr(A)Pr(B)} $$
+It is a measire of the degree that A and B are not independent.
+
+however, a shortcoming is it's upper bound varies and therefore interpreting it's value is problematic.
+
+[Frechet probability bounds](https://marginalrevolution.com/marginalrevolution/2015/09/the-frechet-probability-bounds-super-wonky.html)
 
 
 ```{r}

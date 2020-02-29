@@ -125,12 +125,10 @@ parameter = list(support = 0.01, confidence = 0.5, maxlen = 5))
     ## set item appearances ...[0 item(s)] done [0.00s].
     ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
     ## sorting and recoding items ... [88 item(s)] done [0.00s].
-    ## creating transaction tree ... done [0.01s].
+    ## creating transaction tree ... done [0.00s].
     ## checking subsets of size 1 2 3 4 done [0.00s].
     ## writing ... [15 rule(s)] done [0.00s].
     ## creating S4 object  ... done [0.00s].
-
-The
 
 ``` r
 class(rules)
@@ -224,6 +222,22 @@ qual
     ## 13 0.01220132  0.5020921 2.594890   120
     ## 14 0.01270971  0.5230126 2.046888   125
     ## 15 0.02226741  0.5128806 2.007235   219
+
+### Standardised Lift
+
+As discussed above Lift is defined as:
+
+  
+![\\frac{Pr(A,B)}{Pr(A)Pr(B)}
+](https://latex.codecogs.com/png.latex?%5Cfrac%7BPr%28A%2CB%29%7D%7BPr%28A%29Pr%28B%29%7D%20
+"\\frac{Pr(A,B)}{Pr(A)Pr(B)} ")  
+It is a measire of the degree that A and B are not independent.
+
+however, a shortcoming is it’s upper bound varies and therefore
+interpreting it’s value is problematic.
+
+[Frechet probability
+bounds](https://marginalrevolution.com/marginalrevolution/2015/09/the-frechet-probability-bounds-super-wonky.html)
 
 ``` r
 # compute p(A) and p(B)

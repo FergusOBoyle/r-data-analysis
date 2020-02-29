@@ -1,0 +1,190 @@
+---
+title: "Logistic Regression"
+output: 
+  github_document:
+    pandoc_args: --webtex
+---
+
+To illustrate logistic regression I am going to use the SAheart dataset. It relates risk factors for coronary heart disease.
+ 
+```{r}
+library(tidyverse)
+library(bestglm)
+library(modelr)
+
+``` 
+ 
+
+```{r}
+data(SAheart)
+data = as_tibble(SAheart)
+str(data)
+```
+
+From the above you can see that all categorical variables are already factors.
+The responce varaible is chd, indicating if a subject suffered from heart coronary heart disease or not.
+
+
+```{r}
+head(data)
+```
+
+
+```{r}
+fit <- glm(chd ~ ., data = data, family = "binomial")
+
+summary(fit)
+```
+
+
+```{r}
+coefficients(fit)
+```
+
+
+```{r}
+ head(predict(fit))
+```
+
+The above is getting the predicted log-odds for each observation. It's the equivalent of model.matrix(fit) %*% coefficients(fit). 
+
+$$X^Tw$$
+
+model.matrix can be used to create dummy variables. In tis case all is has done is add an intercept:
+
+
+```{r}
+head(model.matrix(fit))
+```
+
+Instead, to get the predicted probabilities we need: 
+
+
+```{r}
+head(predict(fit, type = 'response'))
+
+```
+
+from the documentation:
+
+the type of prediction required. The default is on the scale of the linear predictors; the alternative "response" is on the scale of the response variable. Thus for a default binomial model the default predictions are of log-odds (probabilities on logit scale) and type = "response" gives the predicted probabilities. The "terms" option returns a matrix giving the fitted values of each term in the model formula on the linear predictor scale.
+
+The above is equivalent to:
+
+$$\frac{exp(X^Tw)}{1 + exp(X^Tw)}$$
+
+#### Which of the predictors are the most significant?
+
+From the p values we can see that tobacco, ldl, famhistPresent, typea and age are all statistically significant.
+
+
+
+
+```{r}
+anova(fit, test="Chisq")
+
+
+```
+
+We must look at the difference between the null deviance, which is the deviance of the null model (i.e., model with only the intercept), and the residual deviance. The bigger is difference the best our model is doing against the null model.
+
+### Confidence Intervals
+
+```{r}
+w <- coef(fit)
+```
+
+
+
+```{r}
+summary(fit)$coefficients
+```
+
+Extract just the standard errors:
+
+```{r}
+se = summary(fit)$coefficients[,2]
+```
+
+Compute the confidence intervals for each weight:
+
+```{r}
+lower <- w-1.96*se
+upper <- w+1.96*se
+```
+
+
+
+```{r}
+confidence_intervals <- cbind(lower = lower, w = w, upper = upper)
+
+```
+
+
+
+```{r}
+confidence_intervals
+```
+
+ 
+
+
+```{r}
+log_odds <- predict(fit)
+
+
+probs <- predict(fit, type = "response") # equivalent to 'phat <- fitted(fit)'
+
+colours <- c("orange", "blue") 
+plot(log_odds, jitter(probs, amount = 0.01),
+col = adjustcolor(colours[SAheart$chd + 1], 0.7), cex = 0.7,
+xlab = "Log-odds", ylab = "Fitted probabilities")
+
+```
+
+#### Goodness of fit tests
+
+The Peason test statistic:
+
+$$\sum_{i=1}^N{\frac{(y_{i}-\hat{p}_{i})^2}{\hat{p}_{i}(1-\hat{p}_{i})}}$$
+
+The denominator is standardising each term by the variance of the estimated bernouilli distribition.
+
+```{r}
+residuals_pearson <- residuals(fit, type = "pearson")
+tests_pearson <- sum(residuals_pearson^2)
+tests_pearson
+```
+
+The deviance test statistic:
+
+```{r}
+residuals_deviance <- residuals(fit, type = "deviance")
+test_deviance <- sum(residuals_deviance^2)
+test_deviance
+# equivalent to
+#deviance(fit)
+
+```
+
+Both test statistics are have a  $\chi^2_{N_{d}-n_{p}}$,where $N_{d}$ is the number of distinct obsevations and $n_{p}$ is the number of parameters.
+
+
+
+```{r}
+nd = nrow(unique(model.matrix(fit)))
+np = length(fit$coeff)
+
+1 - pchisq(tests_pearson, nd-np)
+```
+
+The result is well above 0.05 which is indicative of a good fit.
+
+```{r}
+```
+
+
+
+```{r}
+
+```
