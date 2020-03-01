@@ -11,6 +11,8 @@ To illustrate logistic regression I am going to use the SAheart dataset. It rela
 library(tidyverse)
 library(bestglm)
 library(modelr)
+library(ROCR)
+
 
 ``` 
  
@@ -183,8 +185,47 @@ The result is well above 0.05 which is indicative of a good fit.
 ```{r}
 ```
 
+### Predictions
+
+Next I move on to performing predictions using the fitted weights
+
+Note that this analysis is carried out with the same data as the triaining data.
+
+```{r}
+tau <- 0.5
+p <- fitted(fit) #same as predict(fit, type="response") (see above)
+pred <- ifelse(p > tau, 1, 0)
+
+```
+
+#### ROCR Package
+
+The ROCR package first requires the creation of a prediction object:
+
+```{r}
+prediction_obj <- prediction(fitted(fit), data$chd)
+```
+
+```{r}
+perf <- performance(prediction_obj, "tpr", "fpr")
+plot(perf)
+abline(0,1, col = "orange", lty = 2)
+```
+
+And compute the area under the curve (AUC)
+
+```{r}
+auc <- performance(prediction_obj, "auc")
+auc@y.values
+
+```
 
 
 ```{r}
 
 ```
+
+```{r}
+
+```
+

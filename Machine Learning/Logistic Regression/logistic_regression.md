@@ -31,7 +31,21 @@ library(bestglm)
 
 ``` r
 library(modelr)
+library(ROCR)
 ```
+
+    ## Warning: package 'ROCR' was built under R version 3.6.2
+
+    ## Loading required package: gplots
+
+    ## Warning: package 'gplots' was built under R version 3.6.2
+
+    ## 
+    ## Attaching package: 'gplots'
+
+    ## The following object is masked from 'package:stats':
+    ## 
+    ##     lowess
 
 ``` r
 data(SAheart)
@@ -334,3 +348,42 @@ np = length(fit$coeff)
     ## [1] 0.4915821
 
 The result is well above 0.05 which is indicative of a good fit.
+
+### Predictions
+
+Next I move on to performing predictions using the fitted weights
+
+Note that this analysis is carried out with the same data as the
+triaining data.
+
+``` r
+tau <- 0.5
+p <- fitted(fit) #same as predict(fit, type="response") (see above)
+pred <- ifelse(p > tau, 1, 0)
+```
+
+#### ROCR Package
+
+The ROCR package first requires the creation of a prediction object:
+
+``` r
+prediction_obj <- prediction(fitted(fit), data$chd)
+```
+
+``` r
+perf <- performance(prediction_obj, "tpr", "fpr")
+plot(perf)
+abline(0,1, col = "orange", lty = 2)
+```
+
+![](logistic_regression_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+
+And compute the area under the curve (AUC)
+
+``` r
+auc <- performance(prediction_obj, "auc")
+auc@y.values
+```
+
+    ## [[1]]
+    ## [1] 0.7947848
