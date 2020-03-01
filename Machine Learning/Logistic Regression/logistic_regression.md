@@ -8,14 +8,14 @@ It relates risk factors for coronary heart disease.
 library(tidyverse)
 ```
 
-    ## -- Attaching packages ------------------------------------------------- tidyverse 1.2.1 --
+    ## -- Attaching packages --------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse 1.2.1 --
 
     ## v ggplot2 3.2.1     v purrr   0.3.3
     ## v tibble  2.1.3     v dplyr   0.8.3
     ## v tidyr   1.0.0     v stringr 1.4.0
     ## v readr   1.3.1     v forcats 0.4.0
 
-    ## -- Conflicts ---------------------------------------------------- tidyverse_conflicts() --
+    ## -- Conflicts ------------------------------------------------------------------------------------------------------------------------------------------------------ tidyverse_conflicts() --
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -387,3 +387,47 @@ auc@y.values
 
     ## [[1]]
     ## [1] 0.7947848
+
+Accuracy:
+
+  
+![\\frac{TP + TN}{TP + FP + TN
++FN}](https://latex.codecogs.com/png.latex?%5Cfrac%7BTP%20%2B%20TN%7D%7BTP%20%2B%20FP%20%2B%20TN%20%2BFN%7D
+"\\frac{TP + TN}{TP + FP + TN +FN}")  
+
+Precision is the fraction of results classified as positive, which are
+indeed positive. (Positive predictive value):
+
+  
+![\\frac{TP}{TP +
+FP}](https://latex.codecogs.com/png.latex?%5Cfrac%7BTP%7D%7BTP%20%2B%20FP%7D
+"\\frac{TP}{TP + FP}")  
+
+Recall is the fraction of all positive results which were detected. Also
+known as sensitivity or True positive rate
+
+  
+![\\frac{TP}{TP +
+FN}](https://latex.codecogs.com/png.latex?%5Cfrac%7BTP%7D%7BTP%20%2B%20FN%7D
+"\\frac{TP}{TP + FN}")  
+
+False positve rate (FPR). Of those that are truly negative, how many are
+falsely classified as positive?:
+
+  
+![\\frac{FP}{FP +
+TN}](https://latex.codecogs.com/png.latex?%5Cfrac%7BFP%7D%7BFP%20%2B%20TN%7D
+"\\frac{FP}{FP + TN}")  
+
+Specificity. Of those that are truly negative, how many are classified
+as negative?:
+
+  
+![\\frac{TN}{FP +
+TN}](https://latex.codecogs.com/png.latex?%5Cfrac%7BTN%7D%7BFP%20%2B%20TN%7D
+"\\frac{TN}{FP + TN}")  
+
+For spam detection, you need to maximise precision for the spam. For
+medical diagnosis you want to maximise recall.
+
+The ROC curve plots false positve rate versus true positive rate

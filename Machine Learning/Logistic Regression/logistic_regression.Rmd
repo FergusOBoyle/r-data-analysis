@@ -220,6 +220,34 @@ auc@y.values
 
 ```
 
+Accuracy:
+
+$$\frac{TP + TN}{TP + FP + TN +FN}$$
+
+Precision is the fraction of results classified as positive, which are indeed positive. (Positive predictive value):
+
+$$\frac{TP}{TP + FP}$$
+
+Recall is the fraction of all positive results which were detected. Also known as sensitivity or True positive rate
+
+$$\frac{TP}{TP + FN}$$
+
+False positve rate (FPR). Of those that are truly negative, how many are
+falsely classified as positive?:
+
+$$\frac{FP}{FP + TN}$$
+
+Specificity. Of those that are truly negative, how many are
+classified as negative?:
+
+$$\frac{TN}{FP + TN}$$
+
+
+For spam detection, you need to maximise precision for the spam.
+For medical diagnosis you want to maximise recall.
+
+The ROC curve plots false positve rate versus true positive rate
+
 
 ```{r}
 
