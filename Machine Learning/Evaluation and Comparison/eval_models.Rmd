@@ -1,0 +1,25 @@
+---
+title: "Comparing and evaluating models"
+output: 
+  github_document:
+    pandoc_args: --webtex
+---
+
+
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
