@@ -8,14 +8,14 @@ It relates risk factors for coronary heart disease.
 library(tidyverse)
 ```
 
-    ## -- Attaching packages --------------------------------------------------------------------------------------------------------------------------------------------------- tidyverse 1.2.1 --
+    ## -- Attaching packages ------------------------------------------------------------------------------ tidyverse 1.2.1 --
 
     ## v ggplot2 3.2.1     v purrr   0.3.3
     ## v tibble  2.1.3     v dplyr   0.8.3
     ## v tidyr   1.0.0     v stringr 1.4.0
     ## v readr   1.3.1     v forcats 0.4.0
 
-    ## -- Conflicts ------------------------------------------------------------------------------------------------------------------------------------------------------ tidyverse_conflicts() --
+    ## -- Conflicts --------------------------------------------------------------------------------- tidyverse_conflicts() --
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
@@ -142,7 +142,7 @@ the equivalent of model.matrix(fit) %\*% coefficients(fit).
   
 ![X^Tw](https://latex.codecogs.com/png.latex?X%5ETw "X^Tw")  
 
-model.matrix can be used to create dummy variables. In tis case all is
+model.matrix can be used to create dummy variables. In this case all is
 has done is add an intercept:
 
 ``` r
@@ -334,7 +334,7 @@ Both test statistics are have a
 ![\\chi^2\_{N\_{d}-n\_{p}}](https://latex.codecogs.com/png.latex?%5Cchi%5E2_%7BN_%7Bd%7D-n_%7Bp%7D%7D
 "\\chi^2_{N_{d}-n_{p}}"),where
 ![N\_{d}](https://latex.codecogs.com/png.latex?N_%7Bd%7D "N_{d}") is the
-number of distinct obsevations and
+number of distinct observations and
 ![n\_{p}](https://latex.codecogs.com/png.latex?n_%7Bp%7D "n_{p}") is the
 number of parameters.
 
@@ -354,7 +354,7 @@ The result is well above 0.05 which is indicative of a good fit.
 Next I move on to performing predictions using the fitted weights
 
 Note that this analysis is carried out with the same data as the
-triaining data.
+training data.
 
 ``` r
 tau <- 0.5
@@ -431,3 +431,16 @@ For spam detection, you need to maximise precision for the spam. For
 medical diagnosis you want to maximise recall.
 
 The ROC curve plots false positve rate versus true positive rate
+
+When should one use the ROC curve vserus the precision-recall curve?
+
+An excellent explanation can be found
+[here](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/).
+
+ROC Curves summarize the trade-off between the true positive rate and
+false positive rate for a predictive model using different probability
+thresholds. Precision-Recall curves summarize the trade-off between the
+true positive rate and the positive predictive value for a predictive
+model using different probability thresholds. ROC curves are appropriate
+when the observations are balanced between each class, whereas
+precision-recall curves are appropriate for imbalanced datasets.
