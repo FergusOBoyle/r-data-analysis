@@ -52,7 +52,7 @@ The above is getting the predicted log-odds for each observation. It's the equiv
 
 $$X^Tw$$
 
-model.matrix can be used to create dummy variables. In tis case all is has done is add an intercept:
+model.matrix can be used to create dummy variables. In this case all is has done is add an intercept:
 
 
 ```{r}
@@ -169,7 +169,7 @@ test_deviance
 
 ```
 
-Both test statistics are have a  $\chi^2_{N_{d}-n_{p}}$,where $N_{d}$ is the number of distinct obsevations and $n_{p}$ is the number of parameters.
+Both test statistics are have a  $\chi^2_{N_{d}-n_{p}}$,where $N_{d}$ is the number of distinct observations and $n_{p}$ is the number of parameters.
 
 
 
@@ -189,7 +189,7 @@ The result is well above 0.05 which is indicative of a good fit.
 
 Next I move on to performing predictions using the fitted weights
 
-Note that this analysis is carried out with the same data as the triaining data.
+Note that this analysis is carried out with the same data as the training data.
 
 ```{r}
 tau <- 0.5
@@ -247,6 +247,14 @@ For spam detection, you need to maximise precision for the spam.
 For medical diagnosis you want to maximise recall.
 
 The ROC curve plots false positve rate versus true positive rate
+
+When should one use the ROC curve vserus the precision-recall curve?
+
+An excellent explanation can be found [here](https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/).
+
+ROC Curves summarize the trade-off between the true positive rate and false positive rate for a predictive model using different probability thresholds.
+Precision-Recall curves summarize the trade-off between the true positive rate and the positive predictive value for a predictive model using different probability thresholds.
+ROC curves are appropriate when the observations are balanced between each class, whereas precision-recall curves are appropriate for imbalanced datasets.
 
 
 ```{r}
